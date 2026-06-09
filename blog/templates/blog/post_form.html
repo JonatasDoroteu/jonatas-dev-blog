@@ -1,0 +1,121 @@
+{% extends "core/base.html" %}
+
+{% block title %}{% if form.instance.pk %}Editar Artigo{% else %}Novo Artigo{% endif %}{% endblock %}
+
+{% block content %}
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Criar conteúdo</p>
+        <h1>{% if form.instance.pk %}Editar artigo{% else %}Novo artigo{% endif %}</h1>
+        <p class="page-description">Use o editor para registrar ideias, notas ou tutoriais.</p>
+    </div>
+</header>
+
+<form method="POST" class="form-card">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="id_title">Título</label>
+        {{ form.title }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_content">Conteúdo</label>
+        {{ form.content }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_category">Categoria</label>
+        <div class="inline-create">
+            {{ form.category }}
+            <div class="quick-create">
+                <input type="text" id="new-category-name" placeholder="Nova categoria" />
+                <button type="button" id="create-category-btn" class="btn-small">Criar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Tags</label>
+        <div id="tags-container">
+            {{ form.tags }}
+        </div>
+        <div class="quick-create">
+            <input type="text" id="new-tag-name" placeholder="Nova tag" />
+            <button type="button" id="create-tag-btn" class="btn-small">Criar</button>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <a href="{% url 'post_list' %}" class="btn-secondary">Voltar</a>
+        <button type="submit" class="btn-primary">Salvar</button>
+    </div>
+</form>
+
+{% block extra_js %}
+<script>
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    const csrftoken = getCookie('csrftoken');
+
+    document.getElementById('create-category-btn').addEventListener('click', function(){
+        const name = document.getElementById('new-category-name').value.trim();
+        if(!name) return alert('Digite o nome da categoria');
+
+        fetch('{% url "ajax_create_category" %}', {
+            method: 'POST',
+            headers: { 'X-CSRFToken': csrftoken, 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ name: name })
+        }).then(r=>r.json()).then(data=>{
+            if(data.error) return alert(data.error);
+            const sel = document.getElementById('id_category');
+            const opt = document.createElement('option');
+            opt.value = data.id;
+            opt.text = data.name;
+            opt.selected = true;
+            sel.appendChild(opt);
+            document.getElementById('new-category-name').value = '';
+        }).catch(()=>alert('Erro ao criar categoria'));
+    });
+
+    document.getElementById('create-tag-btn').addEventListener('click', function(){
+        const name = document.getElementById('new-tag-name').value.trim();
+        if(!name) return alert('Digite o nome da tag');
+
+        fetch('{% url "ajax_create_tag" %}', {
+            method: 'POST',
+            headers: { 'X-CSRFToken': csrftoken, 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ name: name })
+        }).then(r=>r.json()).then(data=>{
+            if(data.error) return alert(data.error);
+            const container = document.getElementById('tags-container');
+            // create checkbox input
+            const id = 'id_tag_' + data.id;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'checkbox-item';
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.name = 'tags';
+            input.value = data.id;
+            input.id = id;
+            input.checked = true;
+            const label = document.createElement('label');
+            label.htmlFor = id;
+            label.textContent = data.name;
+            wrapper.appendChild(input);
+            wrapper.appendChild(label);
+            container.appendChild(wrapper);
+            document.getElementById('new-tag-name').value = '';
+        }).catch(()=>alert('Erro ao criar tag'));
+    });
+});
+</script>
+{% endblock %}
+
+{% endblock %}

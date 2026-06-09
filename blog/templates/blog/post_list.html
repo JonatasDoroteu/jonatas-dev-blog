@@ -1,0 +1,71 @@
+{% extends "core/base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Visão geral</p>
+        <h1>📰 Posts recentes</h1>
+        <p class="page-description">Crie e compartilhe artigos técnicos com estilo moderno e navegação direta.</p>
+    </div>
+    <a href="{% url 'post_create' %}" class="btn-primary">+ Novo artigo</a>
+</header>
+
+<div class="blog-layout">
+    <section class="posts-column">
+        <div class="post-grid">
+            {% for post in posts %}
+            <article class="post-card">
+                <div class="post-card-header">
+                    <h2>
+                        <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+                    </h2>
+                    <span class="post-meta">{{ post.created_at|date:"d/m/Y H:i" }}</span>
+                </div>
+
+                {% if post.category %}
+                <div class="post-tag-row">
+                    <span class="badge">{{ post.category.name }}</span>
+                </div>
+                {% endif %}
+
+                <p class="preview">{{ post.content|truncatechars:120 }}</p>
+
+                <div class="actions action-pill-row">
+                    <a href="{% url 'post_detail' post.id %}" class="btn-secondary">Ver</a>
+                    <a href="{% url 'post_update' post.id %}" class="btn-secondary">Editar</a>
+                    <a href="{% url 'post_delete' post.id %}" class="btn-secondary">Excluir</a>
+                </div>
+            </article>
+            {% empty %}
+            <div class="panel-card">
+                <p>Nenhum post encontrado ainda. Crie o primeiro post para começar.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <aside class="sidebar">
+        <div class="panel-card">
+            <h3>Categorias</h3>
+            <div class="pill-list">
+                {% for category in categories %}
+                <a href="?category={{ category.slug }}" class="pill {% if selected_category == category.slug %}pill-active{% endif %}">{{ category.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="panel-card">
+            <h3>Mais recentes</h3>
+            <ul class="sidebar-list">
+                {% for post in featured_posts %}
+                <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+</div>
+
+{% endblock %}

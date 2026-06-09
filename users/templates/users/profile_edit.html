@@ -1,0 +1,51 @@
+{% extends "core/base.html" %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Conta</p>
+        <h1>Editar Perfil</h1>
+        <p class="page-description">Atualize suas informações públicas.</p>
+    </div>
+</header>
+
+<form method="POST" enctype="multipart/form-data" class="form-card">
+    {% csrf_token %}
+
+    {% if form.instance.avatar %}
+    <div class="form-group">
+        <label>Avatar atual</label>
+        <img src="{{ form.instance.avatar.url }}" alt="Avatar" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-top:0.5rem;">
+    </div>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="{{ form.avatar.id_for_label }}">Trocar avatar</label>
+        {{ form.avatar }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.bio.id_for_label }}">Bio</label>
+        {{ form.bio }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.github.id_for_label }}">GitHub</label>
+        {{ form.github }}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.linkedin.id_for_label }}">LinkedIn</label>
+        {{ form.linkedin }}
+    </div>
+
+    <div class="form-actions">
+        <a href="{% url 'post_list' %}" class="btn-secondary">Voltar</a>
+        <button type="submit" class="btn-primary">Salvar</button>
+    </div>
+</form>
+
+{% endblock %}

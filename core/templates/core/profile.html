@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Perfil — {{ profile_user.username }}{% endblock %}
+
+{% block content %}
+<section class="profile container">
+    <div class="profile-card">
+        <div class="avatar">
+            {% if profile and profile.avatar %}
+                <img src="{{ profile.avatar.url }}" alt="{{ profile_user.username }}" />
+            {% else %}
+                <img src="{% static 'images/avatar-placeholder.png' %}" alt="avatar placeholder" />
+            {% endif %}
+        </div>
+
+        <div class="profile-info">
+            <h1>{{ profile_user.get_full_name|default:profile_user.username }}</h1>
+            {% if profile and profile.bio %}
+                <p>{{ profile.bio }}</p>
+            {% endif %}
+
+            <ul class="profile-links">
+                {% if profile and profile.github %}
+                    <li><a href="{{ profile.github }}" target="_blank" rel="noopener">GitHub</a></li>
+                {% endif %}
+                {% if profile and profile.linkedin %}
+                    <li><a href="{{ profile.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}
