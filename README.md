@@ -179,8 +179,7 @@ meu_primeiro_django/
 
 **Jonatas Doroteu**
 - GitHub: [@JonatasDoroteu](https://github.com/JonatasDoroteu)
-- LinkedIn: [linkedin.com/in/jonatas](https://www.linkedin.com/in/jonatas-doroteu-62ab77208/)
-
+- LinkedIn: [linkedin.com/in/jonatas-doroteu](https://www.linkedin.com/in/jonatas-doroteu-62ab77208/)
 ---
 
 > Projeto desenvolvido como portfólio para vaga de estágio em desenvolvimento backend.
