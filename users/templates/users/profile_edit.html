@@ -15,31 +15,36 @@
 <form method="POST" enctype="multipart/form-data" class="form-card">
     {% csrf_token %}
 
-    {% if form.instance.avatar %}
     <div class="form-group">
+        <label for="{{ user_form.email.id_for_label }}">Email</label>
+        {{ user_form.email }}
+    </div>
+
+    {% if profile_form.instance.avatar %}
+    <div class="form-group avatar-preview">
         <label>Avatar atual</label>
-        <img src="{{ form.instance.avatar.url }}" alt="Avatar" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-top:0.5rem;">
+        <img src="{{ profile_form.instance.avatar.url }}" alt="Avatar">
     </div>
     {% endif %}
 
     <div class="form-group">
-        <label for="{{ form.avatar.id_for_label }}">Trocar avatar</label>
-        {{ form.avatar }}
+        <label for="{{ profile_form.avatar.id_for_label }}">Trocar avatar</label>
+        {{ profile_form.avatar }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.bio.id_for_label }}">Bio</label>
-        {{ form.bio }}
+        <label for="{{ profile_form.bio.id_for_label }}">Bio</label>
+        {{ profile_form.bio }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.github.id_for_label }}">GitHub</label>
-        {{ form.github }}
+        <label for="{{ profile_form.github.id_for_label }}">GitHub</label>
+        {{ profile_form.github }}
     </div>
 
     <div class="form-group">
-        <label for="{{ form.linkedin.id_for_label }}">LinkedIn</label>
-        {{ form.linkedin }}
+        <label for="{{ profile_form.linkedin.id_for_label }}">LinkedIn</label>
+        {{ profile_form.linkedin }}
     </div>
 
     <div class="form-actions">

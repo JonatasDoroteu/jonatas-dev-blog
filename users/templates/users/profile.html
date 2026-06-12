@@ -12,19 +12,39 @@
     </div>
 </header>
 
-{% if user.profile.avatar %}
-<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
-{% endif %}
+<div class="form-card">
 
-{% if user.profile.bio %}
-<p>{{ user.profile.bio }}</p>
-{% endif %}
+    {% if user.profile.avatar %}
+    <div class="form-group avatar-preview">
+        <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+    </div>
+    {% endif %}
 
-<p>
-    {% if user.profile.github %}<a href="{{ user.profile.github }}">GitHub</a>{% endif %}
-    {% if user.profile.linkedin %}<a href="{{ user.profile.linkedin }}">LinkedIn</a>{% endif %}
-</p>
+    {% if user.profile.bio %}
+    <div class="form-group">
+        <label>Bio</label>
+        <p>{{ user.profile.bio }}</p>
+    </div>
+    {% endif %}
 
-<a href="{% url 'profile_edit' %}" class="btn-primary">Editar Perfil</a>
+    {% if user.profile.github or user.profile.linkedin %}
+    <div class="form-group">
+        <label>Links</label>
+        <div class="pill-list">
+            {% if user.profile.github %}
+            <a href="{{ user.profile.github }}" class="pill" target="_blank">GitHub</a>
+            {% endif %}
+            {% if user.profile.linkedin %}
+            <a href="{{ user.profile.linkedin }}" class="pill" target="_blank">LinkedIn</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="form-actions">
+        <a href="{% url 'profile_edit' %}" class="btn-primary">Editar Perfil</a>
+    </div>
+
+</div>
 
 {% endblock %}
