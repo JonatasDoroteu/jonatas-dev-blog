@@ -4,13 +4,10 @@ from .models import Post
 
 class PostSitemap(Sitemap):
     changefreq = "weekly"
-    priority = 0.7
+    priority = 0.5
 
     def items(self):
-        return Post.objects.all()
+        return Post.objects.order_by('id')
 
-    def lastmod(self, obj):
-        return obj.updated_at
-
-    def location(self, obj):
-        return obj.get_absolute_url()
+    def location(self, item):
+        return f'/posts/{item.id}/'

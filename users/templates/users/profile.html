@@ -1,0 +1,30 @@
+{% extends "core/base.html" %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Conta</p>
+        <h1>{{ user.username }}</h1>
+        <p class="page-description">{{ user.email }}</p>
+    </div>
+</header>
+
+{% if user.profile.avatar %}
+<img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+{% endif %}
+
+{% if user.profile.bio %}
+<p>{{ user.profile.bio }}</p>
+{% endif %}
+
+<p>
+    {% if user.profile.github %}<a href="{{ user.profile.github }}">GitHub</a>{% endif %}
+    {% if user.profile.linkedin %}<a href="{{ user.profile.linkedin }}">LinkedIn</a>{% endif %}
+</p>
+
+<a href="{% url 'profile_edit' %}" class="btn-primary">Editar Perfil</a>
+
+{% endblock %}

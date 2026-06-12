@@ -1,8 +1,16 @@
 # Jonatas.dev — Tech Journal
+## 🌐 Demo
+
+**Site:** https://jonatas-dev-blog-production.up.railway.app
+
+**API Docs:** https://jonatas-dev-blog-production.up.railway.app/api/docs/
 
 Blog pessoal desenvolvido com Django, com API REST completa, autenticação JWT, documentação Swagger e sistema de perfis de usuário.
 
----
+## 🚀 Deploy
+
+- Produção: https://jonatas-dev-blog-production.up.railway.app
+- Documentação da API: https://jonatas-dev-blog-production.up.railway.app/api/docs/---
 
 ## 📸 Screenshots
 
@@ -62,6 +70,42 @@ Blog pessoal desenvolvido com Django, com API REST completa, autenticação JWT,
 - Meta tags Open Graph e Twitter Card
 - Design responsivo dark mode
 
+## Testes Automatizados
+
+O projeto possui uma suíte de testes automatizados desenvolvida com o framework de testes do Django, cobrindo as principais funcionalidades da aplicação.
+
+## ✅ Qualidade de Software
+
+- 91 testes automatizados
+- Arquitetura MVC utilizando Django
+- API REST documentada com Swagger/OpenAPI
+- Controle de permissões customizadas
+- Deploy em produção com Railway
+- Versionamento com Git e GitHub
+
+### Cobertura dos testes
+
+* Models (Posts, Categorias, Tags e Usuários)
+* Views
+* URLs
+* Autenticação e autorização
+* CRUD de posts
+* Perfis de usuário
+* Permissões da API
+
+### Executar os testes
+
+```bash
+python manage.py test
+```
+
+Resultado atual:
+
+```text
+Ran 91 tests
+
+OK
+```
 ---
 
 ## ⚙️ Como rodar localmente
@@ -182,4 +226,4 @@ meu_primeiro_django/
 - LinkedIn: [linkedin.com/in/jonatas-doroteu](https://www.linkedin.com/in/jonatas-doroteu-62ab77208/)
 ---
 
-> Projeto desenvolvido como portfólio para vaga de estágio em desenvolvimento backend.
+> > Projeto desenvolvido para demonstrar conhecimentos em Python, Django, APIs REST, autenticação JWT, testes automatizados, banco de dados e deploy em produção.

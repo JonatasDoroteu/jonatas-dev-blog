@@ -17,6 +17,15 @@ class RegisterForm(UserCreationForm):
         ]
 
 
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            "email",
+        ]
+
+
 class ProfileForm(forms.ModelForm):
 
     class Meta:

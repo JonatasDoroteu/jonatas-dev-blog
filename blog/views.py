@@ -44,7 +44,9 @@ def post_create(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
             return redirect('post_list')
     else:
         form = PostForm()
@@ -54,6 +56,8 @@ def post_create(request):
 @login_required
 def post_update(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
+    if post.author != request.user:
+        return redirect('post_list')
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():

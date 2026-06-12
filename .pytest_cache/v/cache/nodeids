@@ -1,0 +1,10 @@
+[
+  "blog/tests.py::test_authenticated_user_can_create_post",
+  "blog/tests.py::test_author_can_update_own_post",
+  "blog/tests.py::test_filter_posts_by_category",
+  "blog/tests.py::test_other_user_cannot_update_post",
+  "blog/tests.py::test_post_detail_returns_single_post",
+  "blog/tests.py::test_post_list_returns_posts",
+  "blog/tests.py::test_staff_user_can_update_any_post",
+  "blog/tests.py::test_unauthenticated_user_cannot_create_post"
+]
