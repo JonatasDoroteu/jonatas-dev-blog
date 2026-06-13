@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tech Journal{% endblock %}</title>
+    <meta name="description" content="Blog pessoal em Django com posts, aprendizado e portfólio técnico.">
+    {% block extra_meta %}{% endblock %}
+    <meta property="og:site_name" content="Jonatas.dev">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tech Journal - Jonatas.dev">
+    <meta property="og:description" content="Blog pessoal em Django com posts, aprendizado e portfólio técnico.">
+    <meta name="twitter:card" content="summary_large_image">
+    {% block canonical %}{% endblock %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+    <style>
+        .avatar-clear {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        .avatar-file-input {
+            margin-top: 4px;
+        }
+
+        /* ── Página Sobre ── */
+        .sobre-bio { margin-bottom: 1.5rem; }
+        .sobre-intro { display: flex; gap: 2rem; align-items: flex-start; }
+        .sobre-texto h2 { margin-top: 0; }
+        .sobre-texto p { color: #ccc; line-height: 1.7; margin-bottom: 1rem; }
+        .sobre-contato-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .sobre-section { margin-bottom: 1.5rem; }
+        .sobre-section h2 { margin-top: 0; margin-bottom: 1.25rem; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-group h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 0.75rem; }
+        .skill-group ul { list-style: none; padding: 0; margin: 0; }
+        .skill-group ul li { padding: 0.3rem 0; color: #ddd; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .skill-group ul li:last-child { border-bottom: none; }
+
+        .projetos-grid { display: grid; gap: 1.25rem; }
+        .projeto-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 1.25rem; }
+        .projeto-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        .projeto-header h3 { margin: 0; font-size: 1rem; }
+        .projeto-badge { font-size: 0.7rem; background: rgba(79,255,150,0.12); color: #4fff96; border: 1px solid rgba(79,255,150,0.25); padding: 0.2rem 0.6rem; border-radius: 999px; }
+        .projeto-card p { color: #bbb; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem; }
+        .projeto-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .projeto-tech span { font-size: 0.75rem; background: rgba(255,255,255,0.07); border-radius: 6px; padding: 0.2rem 0.6rem; color: #ccc; }
+        .projeto-links { display: flex; gap: 0.75rem; }
+        .projeto-links a { font-size: 0.85rem; color: #7b9fff; text-decoration: none; }
+        .projeto-links a:hover { text-decoration: underline; }
+
+        .aprendendo-lista { list-style: none; padding: 0; margin: 0; }
+        .aprendendo-lista li { padding: 0.5rem 0; color: #ccc; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; }
+        .aprendendo-lista li:last-child { border-bottom: none; }
+
+        .sobre-contato p { color: #ccc; margin-bottom: 1.25rem; }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="container">
+        <div class="brand">
+            <a class="logo" href="{% url 'home' %}">Jonatas.dev</a>
+            <p class="brand-tag">Tech Journal — artigos técnicos e portfólio</p>
+        </div>
+
+        <nav aria-label="Menu principal">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'post_list' %}">Posts</a>
+            <a href="{% url 'sobre' %}">Sobre</a>
+            <a href="/api/docs/">API</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile_edit' %}" class="btn-small">Perfil</a>
+                <a href="{% url 'post_create' %}" class="btn-small">Novo artigo</a>
+                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-small">Sair</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-small">Login</a>
+                <a href="/signup/" class="btn-small">Criar Conta</a>
+            {% endif %}
+        </nav>
+    </div>
+</header>
+
+<main class="notion-container">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>© 2026 Jonatas.dev — Tech Journal</p>
+</footer>
+
+</body>
+</html>

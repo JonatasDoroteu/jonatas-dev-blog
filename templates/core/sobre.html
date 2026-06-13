@@ -1,0 +1,134 @@
+{% extends "core/base.html" %}
+
+{% block title %}Sobre mim — Jonatas.dev{% endblock %}
+
+{% block content %}
+
+<header class="page-header">
+    <div>
+        <p class="eyebrow">Quem sou eu</p>
+        <h1>Sobre mim</h1>
+        <p class="page-description">Desenvolvedor em formação, apaixonado por construir coisas reais.</p>
+    </div>
+</header>
+
+<section class="sobre-bio form-card">
+    <div class="sobre-intro">
+        <div class="sobre-texto">
+            <h2>Olá, sou o Jonatas 👋</h2>
+            <p>
+                Tenho 30 anos e estou em transição para a área de tecnologia, com foco em
+                desenvolvimento back-end com Python e Django. Comecei a estudar programação
+                há menos de um ano e desde então construí projetos reais — incluindo este blog,
+                que tem API REST, autenticação, testes automatizados e deploy em produção.
+            </p>
+            <p>
+                Estou buscando minha primeira oportunidade como desenvolvedor — estágio ou
+                júnior — onde possa continuar aprendendo e contribuindo com projetos reais.
+            </p>
+            <div class="sobre-contato-links">
+                <a href="https://github.com/JonatasDoroteu" target="_blank" rel="noopener" class="btn-primary">
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/jonatas-doroteu-62ab77208/" target="_blank" rel="noopener" class="btn-secondary">
+                    LinkedIn
+                </a>
+                <a href="mailto:jonatasdoroteu9@gmail.com" class="btn-secondary">
+                    E-mail
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sobre-section form-card">
+    <h2>Tecnologias que uso</h2>
+    <div class="skills-grid">
+        <div class="skill-group">
+            <h3>Back-end</h3>
+            <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>Django REST Framework</li>
+                <li>JWT (SimpleJWT)</li>
+                <li>PostgreSQL / SQLite</li>
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h3>Front-end</h3>
+            <ul>
+                <li>HTML5 / CSS3</li>
+                <li>JavaScript (básico)</li>
+                <li>Templates Django</li>
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h3>Ferramentas</h3>
+            <ul>
+                <li>Git / GitHub</li>
+                <li>Railway (deploy)</li>
+                <li>VS Code</li>
+                <li>Postman / Swagger</li>
+                <li>Whitenoise</li>
+            </ul>
+        </div>
+        <div class="skill-group">
+            <h3>Práticas</h3>
+            <ul>
+                <li>Testes automatizados</li>
+                <li>API REST</li>
+                <li>Variáveis de ambiente</li>
+                <li>Deploy em produção</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="sobre-section form-card">
+    <h2>Projetos</h2>
+    <div class="projetos-grid">
+
+        <div class="projeto-card">
+            <div class="projeto-header">
+                <h3>Tech Journal — Jonatas.dev</h3>
+                <span class="projeto-badge">Em produção</span>
+            </div>
+            <p>
+                Blog pessoal construído do zero com Django. Tem CRUD completo de posts,
+                autenticação com login/cadastro, API REST com Django REST Framework,
+                documentação Swagger, testes automatizados e deploy no Railway.
+            </p>
+            <div class="projeto-tech">
+                <span>Python</span><span>Django</span><span>DRF</span><span>PostgreSQL</span><span>Railway</span>
+            </div>
+            <div class="projeto-links">
+                <a href="https://jonatas-dev-blog-production.up.railway.app/blog/" target="_blank" rel="noopener">Ver site</a>
+                <a href="https://github.com/JonatasDoroteu/jonatas-dev-blog" target="_blank" rel="noopener">Ver código</a>
+            </div>
+        </div>
+
+        <!-- Adicione mais projetos aqui quando tiver -->
+
+    </div>
+</section>
+
+<section class="sobre-section form-card">
+    <h2>Estou aprendendo agora</h2>
+    <ul class="aprendendo-lista">
+        <li>🧪 Testes automatizados com Django TestCase</li>
+        <li>🚀 Deploy e variáveis de ambiente em produção</li>
+        <li>📡 APIs REST e autenticação JWT</li>
+        <li>🗃️ PostgreSQL em produção</li>
+    </ul>
+</section>
+
+<section class="sobre-section form-card sobre-contato">
+    <h2>Contato</h2>
+    <p>Estou aberto a oportunidades de estágio ou trabalho júnior em desenvolvimento back-end ou full-stack. Me chama!</p>
+    <div class="sobre-contato-links">
+        <a href="mailto:jonatasdoroteu9@gmail.com" class="btn-primary">Mandar e-mail</a>
+        <a href="https://linkedin.com/in/jonatas-doroteu-62ab77208/" target="_blank" rel="noopener" class="btn-secondary">LinkedIn</a>
+    </div>
+</section>
+
+{% endblock %}
